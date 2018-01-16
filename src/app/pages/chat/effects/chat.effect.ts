@@ -1624,6 +1624,13 @@ export class ChatEffect {
                     if (info.message.unread_count !== data.msg_unread_list.unread_list.length) {
                         info.message.unread_count = data.msg_unread_list.unread_list.length;
                     }
+                    this.store$.dispatch({
+                        type: chatAction.watchUnreadListSuccess,
+                        payload: {
+                            info: data.msg_unread_list,
+                            loading: false
+                        }
+                    });
                     for (let unread of data.msg_unread_list.unread_list) {
                         this.getUnreadListInfo(data, unread);
                     }
